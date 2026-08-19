@@ -47,5 +47,11 @@ console.log('Hello world')
 console.warn('Warning time')
 console.error('This is for error')
 
+/* 
+  Control flows in js - conditionals and loops
+*/
+
+
+
 
 
