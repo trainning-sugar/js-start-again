@@ -23,6 +23,13 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+let answer1 = "1";
+let answer2 = "const";
+let answer3 = false;
+
+console.log(answer1);
+console.log(answer2);
+console.log(answer3);
 
 // STEP 2 — Create the correct answers
 /*
@@ -34,6 +41,9 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+let correct1 = "4";
+let correct2 = "let";
+let correct3 = true;
 
 // STEP 3 — Compare using === and !==
 /*
@@ -47,6 +57,11 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+let isQ1Correct = answer1 === correct1;
+let isQ2Correct = answer2 === correct2;
+let isQ3Correct = answer3 === correct3;
+
+let isQ2Wrong = answer2 !== correct2;
 
 // STEP 4 — Use > and < comparisons (requested)
 /*
@@ -61,6 +76,28 @@
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+let score = 0;
+
+if(isQ1Correct) {
+  score += 1;
+}
+
+if(isQ2Correct) {
+  score += 1;
+}
+
+if(isQ3Correct) {
+  score += 1;
+}
+
+console.log(`Score Total: ${score}`);
+
+let hasAtLeastOne = score > 0;
+let isPerfect = score < 3;
+
+console.log(`Has at least one : ${ hasAtLeastOne }`);
+console.log(`Is perfect : ${ isPerfect}`);
+
 // STEP 5 — Use logical operators && and ||
 /*
   Create:
@@ -71,6 +108,12 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+let passedAll = isQ1Correct && isQ2Correct && isQ3Correct;
+let passedAtLeastOne = isQ1Correct || isQ2Correct || isQ3Correct;
+
+console.log(`Passed all : ${passedAll}`);
+console.log(`Passed at least one: ${passedAtLeastOne}`);
+
 
 // STEP 6 — Final debugging message with if/else
 /*
@@ -82,3 +125,11 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+
+if (passedAll) {
+  console.log('Perfect score!');
+} else if (passedAtLeastOne) {
+  console.log('Some correct answers');
+} else {
+  console.log('Try again');
+}
