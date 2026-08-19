@@ -24,6 +24,15 @@
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+let billAmount = 520;
+let tipPercentWhole = '15%';
+let peopleCount = 5;
+
+console.log(billAmount);
+console.log(tipPercentWhole);
+console.log(peopleCount);
+
+
 // STEP 2 — Percentage logic (15% → decimal)
 /*
   Convert the whole percent into a decimal:
@@ -33,6 +42,11 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+tipPercentWhole = parseInt(tipPercentWhole.substring(0,2));
+console.log(typeof tipPercentWhole);
+const tipPercentDecimal = tipPercentWhole / 100;
+
+console.log(tipPercentDecimal);
 
 // STEP 3 — Calculate the tip (multiplication)
 /*
@@ -41,6 +55,8 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+const tipAmount = billAmount * tipPercentDecimal;
+console.log(tipAmount);
 
 // STEP 4 — Calculate total bill (addition)
 /*
@@ -49,6 +65,8 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+const totalAmount = billAmount + tipAmount;
+console.log(totalAmount);
 
 // STEP 5 — Split per person (division)
 /*
@@ -58,6 +76,9 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+const perPerson = totalAmount / peopleCount;
+console.log(perPerson);
+
 
 // STEP 6 — Use % (remainder) operator (requested)
 /*
@@ -68,6 +89,8 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+const remainder = billAmount % peopleCount;
+console.log(remainder)
 
 // STEP 7 — Debugging checks (>, <)
 /*
@@ -78,3 +101,18 @@
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+
+if(tipAmount > 0) {
+ console.log('first');
+ console.log(`Tip Amount: ${tipAmount}`)
+ console.log('The tip amount is greater than 0');
+} else if (totalAmount > billAmount) {
+  console.log('second');
+  console.log(`Total Amount: ${totalAmount}`);
+  console.log(`Bill Amount: ${billAmount}`);
+  console.log('Total Amount > Bill Amount')
+} else if (remainder < peopleCount) {
+  console.log('third');
+  console.log(`Remainder : ${remainder}`);
+  console.log(`People Count: ${peopleCount}`);
+}
