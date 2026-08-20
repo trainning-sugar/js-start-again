@@ -93,3 +93,63 @@ console.log(keyName);
 for (const key in contact) {
    console.log(`${key} => ${ contact[key]}`);
 }
+
+const random = Math.floor( Math.random() * 10 ) + 1 /* Esto va del 1 al 10*/
+
+function getRandomNumber (min, max) {
+   return Math.floor(Math.random() * (max - min)) + 1;
+}
+
+
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+console.log(getRandomNumber(1,10));
+
+
+const scoreTracker = {
+   1: 0,
+   2: 0,
+   3: 0,
+   4: 0,
+   5: 0,
+   6: 0,
+
+}
+
+/* Roll Dice */
+
+function rollDice () {
+   const roll = Math.floor(Math.random() * 6) + 1;
+   scoreTracker[roll]++;
+   console.log(`You rolled a ${roll}`)
+}
+
+function displayScore() {
+   for (const roll in scoreTracker){
+      console.log(`${roll} : ${scoreTracker[roll]} times`)
+   }
+}
+
+// Simulating dice rolls
+for (let i = 0; i < 100; i++) {
+   rollDice();
+}
+
+displayScore();
