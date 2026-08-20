@@ -41,10 +41,7 @@ Comparison operators are used to comparing two values and return true or false d
 - Ternary Operator : 
 
 ```txt
-let price = 10.5;
-let day = "Monday";
-
-day === "Monday" ? price -= 1.5 : price += 1.5;
+condición ? valorSiTrue : valorSiFalse
 ```
 
 - Falsy and truly
@@ -87,4 +84,3 @@ Note: If break is omitted from the block of a case, the switch statement will co
 break = salir, cortar
 continue = saltar - paso de ti.
  - break y continue son instrucciones que modifican el comportamiento de un bucle (for, while, )
-  
