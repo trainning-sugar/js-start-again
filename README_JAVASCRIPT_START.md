@@ -59,8 +59,8 @@ NaN
 
 ## Statement : 
 - Un statement es una orden o una acción completa.
-¿Este código produce un valor? - ➡️ Es una expresión.
 ¿Este código realiza una acción? - ➡️ Es un statement.
+¿Este código produce un valor? - ➡️ Es una expresión.
 
 En JavaScript, prácticamente todo el programa está formado por statements que contienen expresiones.
 
