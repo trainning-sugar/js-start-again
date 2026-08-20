@@ -21,6 +21,9 @@ RULES:
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+const numbers = [3, 8, 12, 1, 6, 9, 20, 4, 7, 15];
+console.log(numbers);
+
 /* -----------------------------------------
    STEP 2 — filter: keep only numbers >= 10
    -----------------------------------------
@@ -30,6 +33,11 @@ RULES:
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+
+const bigNumbers = numbers.filter((number) => number >= 10);
+
+console.log(bigNumbers);
+
 
 /* -----------------------------------------
    STEP 3 — filter: keep only EVEN numbers
@@ -43,6 +51,8 @@ RULES:
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+const evenNumbers = numbers.filter((number) => number % 2 === 0 );
+console.log(evenNumbers);
 /* -----------------------------------------
    STEP 4 — map: double every number
    -----------------------------------------
@@ -52,6 +62,9 @@ RULES:
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+
+const double = numbers.map((number) => number * 2);
+console.log(double);
 
 /* -----------------------------------------
    STEP 5 — Combine filter + map
@@ -64,3 +77,6 @@ RULES:
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+
+const result = numbers.filter((number) => number > 5).map((number) => number + 100);
+console.log(result);
