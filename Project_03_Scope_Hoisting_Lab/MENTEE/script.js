@@ -23,7 +23,13 @@ RULES:
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+const city = 'Lima';
 
+function printCity() {
+   console.log(city);
+}
+
+printCity();
 /* -----------------------------------------
    STEP 2 — Local variables stay inside the function
    -----------------------------------------
@@ -38,6 +44,12 @@ RULES:
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+function makeSecret() {
+   const secret = 'secret';
+   console.log(secret);
+}
+
+makeSecret();
 
 /* -----------------------------------------
    STEP 3 — Scope shadowing (same name, different place)
@@ -51,6 +63,16 @@ RULES:
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+const level = 20;
+
+function printLevel() {
+   const level = 10;
+   console.log("inside: ", level);
+}
+
+console.log("outside:", level);
+
+printLevel();
 
 /* -----------------------------------------
    STEP 4 — Hoisting: function declaration
@@ -67,6 +89,10 @@ RULES:
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+hoistedHello();
+
+function hoistedHello() {}
+
 /* -----------------------------------------
    STEP 5 — NOT hoisted: function expression
    -----------------------------------------
@@ -80,3 +106,11 @@ RULES:
 */
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+
+/* 
+   "La variable está registrada, pero todavía no ha sido inicializada
+    y no tienes permitido acceder a ella."*/
+    
+notHoistedHello(); 
+const notHoistedHello = function() {};
+
