@@ -80,4 +80,3 @@ console.log(myAnchor.getAttribute('href'));
 myAnchor.setAttribute('href', 'https://www.freecodecamp.org');
 myAnchor.setAttribute('target', '_blank');
 myAnchor.textContent = "VISIT wesite";
-
