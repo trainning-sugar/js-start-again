@@ -23,6 +23,14 @@
 // Then console.log all 3 variables to prove your selectors worked.
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+const noteInput = document.getElementById('noteInput');
+const addNoteBtn = document.querySelector('#addBtn');
+const noteList = document.querySelector('#noteList');
+
+
+console.log(noteInput);
+console.log(addNoteBtn);
+console.log(noteList);
 
 // --------------------------------------------
 // STEP 2 — Create a function that builds ONE note <li>
@@ -39,6 +47,32 @@
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+function createNoteElement(noteText) {
+  const li = document.createElement('li');
+  const p = document.createElement('p');
+  const button = document.createElement('button');
+
+  // Seteando classes
+  li.setAttribute('class', 'note');
+  p.setAttribute('class', 'noteText');
+
+  // Add many classes
+  button.classList.add('btn', 'danger', 'removeBtn');
+
+
+  // Seteando texto
+  p.textContent = noteText;
+  button.textContent = 'remove';
+  
+  // Append Elements
+  li.append(p);
+  li.append(button);
+
+  return li;
+
+}
+
+
 // --------------------------------------------
 // STEP 3 — Add click behavior to "Add Note"
 // --------------------------------------------
@@ -54,6 +88,26 @@
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+addNoteBtn.addEventListener('click', () => {
+
+  const liNote = createNoteElement(noteInput.value);
+
+  if (noteInput.value === "") return;
+  
+  liNote.classList.add('flash');
+
+  noteList.append(liNote);
+
+  console.log("Added note", noteInput.value);
+
+  noteInput.value = '';
+
+  setTimeout(() => {
+    liNote.classList.remove("flash");
+  }, 300);
+
+})
+
 // --------------------------------------------
 // STEP 4 — Remove notes (event delegation)
 // --------------------------------------------
@@ -68,6 +122,19 @@
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+noteList.addEventListener('click', (event) => {
+  console.log(event.target);
+
+  if (event.target.classList.contains("removeBtn")) {
+    console.log('si');
+    event.target.closest('li').remove();
+    console.log("Removed a note")
+  }
+
+})
+
+
+
 // --------------------------------------------
 // STEP 5 — BONUS: Add a "flash" class when adding
 // --------------------------------------------
@@ -78,3 +145,4 @@
 // (CSS already exists for .flash)
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+

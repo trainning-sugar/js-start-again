@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+      }
+
+      #taskList {
+        list-style: none;
+        padding: 0;
+      }
+
+      .task {
+        cursor: pointer;
+        padding: 8px;
+        background: #f0f0f0;
+        margin: 5px 0;
+        border-radius: 5px;
+      }
+
+  </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <input type="text" id="taskInput" placeholder="Enter a task"></input>
+    <button onclick="addTask()">Add task</button>
+    <ul id="taskList"></ul>
+  <script src="/todoListProject.js"></script>
+</body>
+</html>
