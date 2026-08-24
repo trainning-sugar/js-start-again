@@ -29,6 +29,11 @@
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+const imgUrlInput = document.getElementById("imgUrlInput");
+const addImageBtn = document.getElementById('addImageBtn');
+const clearBtn = document.getElementById('clearBtn');
+const gallery = document.getElementById('gallery');
+
 // --------------------------------------------
 // STEP 2 — Build a function that creates ONE thumb card
 // --------------------------------------------
@@ -47,6 +52,34 @@
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+function createThumb(url, idNumber) {
+  const div = document.createElement('div');
+  const img = document.createElement('img');
+  const setAltBtn = document.createElement('button');
+  const removeBtn = document.createElement('button');
+
+  //adding classes
+  div.classList.add('thumb');
+  setAltBtn.classList.add('btn', 'setAltBtn');
+  removeBtn.classList.add('btn', 'removeThumbBtn');
+
+  //adding attributes
+  div.setAttribute('data-id', `${idNumber}`);
+  img.setAttribute('src', `${url}`);
+  img.setAttribute('alt', `User image ${idNumber}`);
+  
+  //Aadding text inside buttons
+  setAltBtn.innerText = 'Set Alt';
+  removeBtn.innerText = 'Remove';
+
+  //append
+  div.append(img);
+  div.append(setAltBtn);
+  div.append(removeBtn);
+
+  return div;
+}
+
 // --------------------------------------------
 // STEP 3 — Add Image button: create + append
 // --------------------------------------------
@@ -63,6 +96,23 @@
 //    - clear the input
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+let nextId =  3;
+
+addImageBtn.addEventListener('click', () => {
+  
+  const url = imgUrlInput.value;
+  
+  if (url==='') return;
+  
+  gallery.append(createThumb(url, nextId));
+
+  nextId++;
+
+  imgUrlInput.value = '';
+  
+});
+
+
 
 // --------------------------------------------
 // STEP 4 — Set Alt + Remove buttons (event delegation)
@@ -83,14 +133,44 @@
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
 
+gallery.addEventListener('click', (event) => {
+  
+   if(event.target.innerText === 'Set Alt') {
+
+    
+    const thumb = event.target.parentElement.closest(".thumb");
+    const img = thumb.querySelector("img");
+    const thatId = thumb.getAttribute('data-id');
+  
+    img.setAttribute('alt', `Gallery image # ${thatId}`);
+    
+    console.log(img);
+
+   } 
+
+
+   if(event.target.innerText === 'Remove') {
+    event.target.parentElement.closest(".thumb").remove();
+   } 
+
+
+})
+
+
 // --------------------------------------------
 // STEP 5 — Clear All (practice option)
 // --------------------------------------------
 // On clearBtn click:
 // 1) select all .thumb inside #gallery
 // 2) remove each one with a loop (forEach)
-
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+
+clearBtn.addEventListener('click', () => {
+  console.log(gallery.querySelectorAll('.thumb'));
+  gallery.querySelectorAll('.thumb').forEach((ele) => {
+    ele.remove();
+  })
+})
 
 // --------------------------------------------
 // STEP 6 — BONUS: querySelectorAll practice on load
@@ -101,3 +181,13 @@
 // 3) for each thumb, log its data-id
 
 // ✅ WRITE YOUR CODE UNDER THIS LINE
+
+window.addEventListener("load", () => {
+  const totalThumb = gallery.querySelectorAll('.thumb');
+  
+  console.log('total Thumbs Right after page load', totalThumb.length);
+
+  totalThumb.forEach((ele) => {
+    console.log('data-id ->', ele.getAttribute('data-id'));
+  })
+})
