@@ -59,16 +59,11 @@ arrayColors.forEach((ele) => {
 });
 
 colorDiv.addEventListener('click', (event) => {
-  
   const colorSelected = event.target.getAttribute('data-color');
   const div = document.querySelector('#pick-color');
-
   div.classList.add('cajita');
-  
   console.log(typeof colorSelected);
-  
   div.style.backgroundColor = colorSelected;
-
 });
 
 
