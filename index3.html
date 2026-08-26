@@ -4,13 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Async Async</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    #loading {
+      font-size: 20px;
+      color: blue;
+    }
+
+    #data {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+  </style>
 </head>
 <body>
 
   <h1>Simulated API call with loading</h1>
-  <button id="fetch-data">Fetch Data</button>
+
+  <button id="fetch-data" onclick="fetchData()">Fetch Data</button>
+  
+  <p id="loading" style="display: none;">Loading...</p>
+  
+  <p id="data"></p>
+  
+  <!--Dynamic Data-->
   <div id="posts"></div>
 
-  <script src="async_web_2.js"></script>
+  <!--<script src="async_web_2.js"></script>-->
+  <script src="async_web_3.js"></script>
 </body>
 </html>
