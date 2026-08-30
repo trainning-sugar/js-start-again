@@ -1,3 +1,4 @@
+
 /*
 ===========================================================
 PROJECT 2 — Focus Sprint Timer (setInterval)
@@ -99,3 +100,46 @@ Reset should:
 */
 
 // ✅ WRITE YOUR CODE BELOW THIS LINE
+
+/* Inputs */
+const minutesInput = document.getElementById("minutesInput");
+const secondsInput = document.getElementById("secondsInput");
+const timeDisplay = document.getElementById("timeDisplay");
+
+const inputs = document.querySelector(".inputs");
+
+inputs.addEventListener('keyup', (event) => {
+   
+   const minutes = minutesInput.value;
+   const seconds = secondsInput.value;
+   
+  const time = formatTime(minutes, seconds);
+
+   timeDisplay.textContent = time;
+})
+
+
+function formatTime(minutes, seconds) {
+   const minutesFormat = minutes.padStart(2, 0);
+   const secondsFormat = seconds.padStart(2, 0);
+
+   return `${minutesFormat}:${secondsFormat}`;
+};
+
+
+let counter = 0;
+
+const id = setInterval(() => {
+   counter ++;
+   console.log("Hola");
+
+   console.log(counter);
+
+   if (counter === 5) {
+      clearInterval(id);
+      console.log("Se terminó el loop");
+   }
+
+}, 2000);
+
+
