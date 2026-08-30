@@ -17,21 +17,6 @@ When you click a button:
 1) Your click handler runs synchronously (right now)
 2) Any setTimeout callbacks run later (after the delay)
 That’s why your first console logs appear before the status changes.
-
------------------------------------------------------------
-STEP 1 — Grab all DOM elements (IDs already exist in HTML)
-Use document.getElementById(...) to store these in variables:
-
-Buttons:
-- placeBtn
-- cancelBtn
-- resetBtn
-
-Status UI:
-- statusText (the big status text)
-- orderIdText (the order id label)
-- stepPending, stepBrewing, stepReady (timeline rows)
-
 -----------------------------------------------------------
 STEP 2 — Create "state" variables (memory in JS)
 You need to remember things between clicks.
@@ -47,30 +32,6 @@ Example idea:
 const timeoutIds = [];
 const id = setTimeout(...);
 timeoutIds.push(id);
-
------------------------------------------------------------
-STEP 3 — Create small UI helper functions (clean code)
-Create functions that do ONE job each:
-
-A) resetTimeline()
-   - remove classes "active" and "done" from all steps
-   - set statusText back to "Idle"
-   - set orderIdText to "—"
-
-B) setStep(stepElement, state)
-   - state can be "active" or "done"
-   - if "active": add class active
-   - if "done": remove active, add done
-
-C) setStatus(text, tone)
-   - set statusText.textContent to text
-   - tone can be "neutral", "warn", "good", "bad"
-   - update a CSS class on the statusText OR body to change color
-
-D) clearAllTimeouts()
-   - loop through timeoutIds and call clearTimeout(id)
-   - then empty the array (timeoutIds = [])
-
 -----------------------------------------------------------
 STEP 4 — Place Order button (setTimeout chain)
 When user clicks Place Order:
@@ -128,3 +89,135 @@ Reset should always bring you back to Idle:
 */
 
 // ✅ WRITE YOUR CODE BELOW THIS LINE
+
+//Buttons
+const placeBtn = document.getElementById("placeBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+//UI
+const statusText = document.getElementById("statusText");
+const orderIdText = document.getElementById("orderIdText");
+
+//Pendiente -> en preparacion -> Listo (steps)
+const stepPending = document.getElementById("stepPending");
+const stepBrewing = document.getElementById("stepBrewing");
+const stepReady = document.getElementById("stepReady");
+
+// State
+let currentOrderId = "123456";
+// Because you might schedule more than 1 timeout and need to cancel ALL of them.
+const timeoutIds = []; 
+
+function resetTimeline() {
+   console.log("reset timeline");
+
+   stepPending.classList.remove("active", "done");
+   stepBrewing.classList.remove("active", "done");
+   stepReady.classList.remove("active", "done");
+   statusText.textContent = "Idle";
+   statusText.classList.remove("toneWarn", "toneGood", "toneBad");
+   statusText.style.color = 
+   orderIdText.textContent = "-";
+}
+
+
+function setStep(stepElement, state) {   
+   
+   if (state === "active") {
+      stepElement.classList.add("active");
+   }
+
+   if (state === "done"){
+      stepElement.classList.remove("active");
+      stepElement.classList.add("done");
+   }
+}
+
+
+function setStatus(text, tone) {
+
+   const toneClasses = {
+         neutral : 'toneNeutral',
+         warn : 'toneWarn',
+         good : 'toneGood',
+         bad: 'toneBad'
+      };
+
+  statusText.textContent = text;
+  
+  console.log(toneClasses[tone]);
+
+  statusText.classList.add(toneClasses[tone]);
+}
+
+function clearAllTimeouts() {
+   console.log('clear Timeouts');
+   timeoutIds.forEach((id) => {
+      clearTimeout(id);
+   });
+   timeoutIds.splice(0);
+   return timeoutIds; 
+}
+
+
+function getOrderId () {
+   return "CF-" + Math.floor(Math.random() * 10000);
+}
+
+
+function placeOrder() {
+   console.log("SYNC: Place Order clicked");
+   
+   clearAllTimeouts();
+
+   //Order Id
+   currentOrderId = getOrderId();
+   orderIdText.textContent = currentOrderId;
+
+   /* Status inicial */
+    setStatus("Pending", "neutral");
+    
+    /*Pending - Brewing - Ready */
+    setStep(stepPending, "active");
+
+   /* Los botones se tienen que deshabilitar */ 
+    placeBtn.setAttribute('disabled', true);
+    cancelBtn.removeAttribute('disabled');
+   
+    /*Siguiente proceso -  */
+
+    const brewingTimeoutId = setTimeout(() => {
+         setStep(stepPending, "done");
+         setStep(stepBrewing, "active");
+         setStatus("Brewing", "warn");
+      }, 1500);
+
+   /* Pusheamos el id */
+   timeoutIds.push(brewingTimeoutId);
+   console.log(timeoutIds);
+
+   const readyTimeoutId = setTimeout(() => {
+    setStep(stepBrewing, "done");
+    setStep(stepReady, "active");
+    setStatus("Ready", "good");
+    
+    placeBtn.removeAttribute('disabled');
+    cancelBtn.setAttribute('disabled', true);
+   }, 3500);
+
+    timeoutIds.push(readyTimeoutId);
+    console.log(timeoutIds);
+}
+
+
+function cancelOrder() {
+   console.log("SYNC: Cancel clicked");
+   clearAllTimeouts();
+   setStatus("Cancelled", "bad");
+   
+   statusText.classList.remove("toneWarn", "toneGood", "toneBad");
+
+   placeBtn.removeAttribute("disabled"); //enable
+   cancelBtn.setAttribute("disabled", true); //disable
+};

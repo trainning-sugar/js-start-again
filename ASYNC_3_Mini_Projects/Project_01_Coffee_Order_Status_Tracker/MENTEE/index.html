@@ -8,6 +8,7 @@
   </head>
   <body>
     <div class="app">
+    
       <header class="header">
         <div>
           <h1 class="title">Coffee Order Status Tracker</h1>
@@ -22,13 +23,16 @@
       </header>
 
       <main class="content">
+        
         <div class="grid">
+          
           <section class="panel">
             <h2>Controls</h2>
             <div class="btnRow">
-              <button id="placeBtn" class="primary">Place Order</button>
-              <button id="cancelBtn" class="danger" disabled>Cancel</button>
-              <button id="resetBtn">Reset</button>
+             <!--Seleccionamos todos los botones--> 
+              <button id="placeBtn" class="primary" onclick="placeOrder()">Place Order</button>
+              <button id="cancelBtn" class="danger" disabled onclick="cancelOrder()">Cancel</button>
+              <button id="resetBtn" onclick="resetTimeline()">Reset</button>
             </div>
             <p class="small">
               Tip: open DevTools → Console. You’ll see logs that prove what is
@@ -37,7 +41,9 @@
           </section>
 
           <section class="panel">
+
             <h2>Timeline</h2>
+            
             <div class="card">
               <div class="statusLine">
                 <div class="statusLabel">Status</div>
@@ -46,10 +52,11 @@
 
               <div class="statusLine">
                 <div class="statusLabel">Order ID</div>
-                <div id="orderIdText" class="orderId">—</div>
+                <div id="orderIdText" class="orderId">-</div>
               </div>
 
               <div class="timeline">
+                
                 <div id="stepPending" class="step">
                   <div class="stepChip">1</div>
                   <div>
@@ -73,6 +80,7 @@
                     <div class="stepDesc">Pickup available</div>
                   </div>
                 </div>
+              
               </div>
             </div>
           </section>
